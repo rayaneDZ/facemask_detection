@@ -35,10 +35,10 @@ while True:
         resized_roi = roi.reshape(1,224,224,3)
         pred = model.predict(resized_roi)[0][0]
         print(str(pred))
-        if pred < 0.9:
+        if pred < 0.1:
             print("wearing mask")
             cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
-        else:
+        elif pred > 0.9:
             print("not wearing mask")
             cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
 
